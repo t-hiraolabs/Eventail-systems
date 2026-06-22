@@ -285,12 +285,12 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .flow{grid-template-columns:1fr}
 }
 /* mobile nav drawer */
-.mobile-nav{display:none;position:fixed;inset:0;z-index:99;background:rgba(10,10,11,.97);
+.mobile-nav{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,10,11,.97);
   backdrop-filter:blur(8px);flex-direction:column;align-items:center;justify-content:center;gap:30px}
 .mobile-nav a{font-family:var(--jp-serif);font-size:1.4rem;color:var(--smoke);letter-spacing:.08em}
 .mobile-nav a:hover{color:var(--white)}
-.mobile-nav .close{position:absolute;top:22px;right:24px;background:none;border:none;
-  color:var(--white);cursor:pointer}
+.mobile-nav .close{position:absolute;top:14px;right:16px;background:none;border:none;
+  color:var(--white);cursor:pointer;padding:12px;line-height:0}
 
 @media(max-height:760px){.scroll-cue{display:none}}
 @media(prefers-reduced-motion:reduce){
