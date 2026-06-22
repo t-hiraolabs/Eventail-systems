@@ -2,7 +2,7 @@
   "name": "eventail",
   "short_name": "eventail",
   "description": "ホームページ制作・アプリ開発・システム開発",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0a0a0b",
   "theme_color": "#0a0a0b",
