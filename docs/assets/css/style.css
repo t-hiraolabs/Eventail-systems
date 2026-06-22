@@ -267,9 +267,12 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   header .btn:not(.menu-toggle){display:none}
   .svc-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr;gap:0}
-  .flow{grid-template-columns:1fr 1fr;gap:40px 0}
-  .step:not(:last-child)::after{display:none}
+  .flow{grid-template-columns:1fr;gap:0;border-left:1px solid var(--line-soft);margin-left:16px}
+  .step{padding:0 0 40px 28px}
+  .step .dot{position:absolute;left:-7px;top:0;margin-bottom:0}
   .step .dot::before{display:none}
+  .step:not(:last-child)::after{display:none}
+  .step:last-child{padding-bottom:0}
   .plan-grid,.work-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:48px}
   section{padding:90px 0}
