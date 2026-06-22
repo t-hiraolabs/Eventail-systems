@@ -266,6 +266,7 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
 
 /* ---------- responsive ---------- */
 @media(max-width:900px){
+  .scroll-cue{display:none}
   nav.links{display:none}
   .menu-toggle{display:block}
   header .btn:not(.menu-toggle){display:none}
