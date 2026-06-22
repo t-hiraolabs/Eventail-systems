@@ -99,6 +99,7 @@ nav.links a:hover::after{width:100%}
 .btn-solid{background:var(--white);color:var(--ink);border-color:var(--white)}
 .btn-solid:hover{background:transparent;color:var(--white);border-color:var(--line)}
 .menu-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer}
+.menu-toggle:hover,.menu-toggle:focus,.menu-toggle:active{background:none;color:var(--white);border:none}
 
 /* ---------- hero ---------- */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
