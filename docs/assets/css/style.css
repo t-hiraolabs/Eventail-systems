@@ -102,7 +102,8 @@ nav.links a:hover::after{width:100%}
 
 /* ---------- hero ---------- */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  align-items:center;text-align:center;padding-top:90px;padding-bottom:60px;overflow:hidden}
+  align-items:center;text-align:center;padding-top:90px;padding-bottom:60px;overflow:hidden;
+  position:relative}
 .hero-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   pointer-events:none;opacity:.5;z-index:0}
 .hero-rings svg{width:min(118vh,1100px);height:min(118vh,1100px);max-width:140vw}
