@@ -116,7 +116,8 @@ nav.links a:hover::after{width:100%}
   line-height:1.55;letter-spacing:.04em;margin-top:46px;position:relative;z-index:2}
 .hero h1 .light{color:var(--smoke);font-weight:400}
 .hero .lead{max-width:600px;margin:26px auto 0;color:var(--smoke);font-size:1rem;
-  font-weight:300;position:relative;z-index:2;line-height:2}
+  font-weight:300;position:relative;z-index:2;line-height:2;
+  text-shadow:0 0 24px var(--ink),0 0 48px var(--ink),0 2px 8px var(--ink)}
 .hero-cta{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap;justify-content:center;
   position:relative;z-index:2}
 .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
