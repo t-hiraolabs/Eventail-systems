@@ -110,7 +110,7 @@ nav.links a:hover::after{width:100%}
 .ring-node{fill:var(--white)}
 .ring-rot{transform-origin:center;animation:spin 90s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero-logo{width:clamp(220px,34vw,360px);height:auto;border-radius:50%;
+.hero-logo{width:clamp(220px,34vw,360px);height:auto;
   position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6))}
 .hero h1{font-family:var(--jp-serif);font-weight:500;font-size:clamp(1.5rem,4vw,2.7rem);
   line-height:1.55;letter-spacing:.04em;margin-top:46px;position:relative;z-index:2}
