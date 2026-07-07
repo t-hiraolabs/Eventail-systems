@@ -110,6 +110,13 @@ docs/
 | X | https://x.com/EventailSystems |
 | Instagram | https://www.instagram.com/eventail.systems/ |
 
+### 表記ルール
+
+| 用途 | 表記 |
+|------|------|
+| サイト内（デザイン表記：ロゴ・見出し・構造化データ等） | `eventail systems`（小文字） |
+| 契約書・請求書などの正式文書 | `Eventail Systems`（先頭大文字） |
+
 ---
 
 ## 7. お問い合わせフォーム仕様
