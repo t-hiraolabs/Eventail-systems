@@ -286,7 +286,11 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .menu-toggle{display:block}
   header .btn:not(.menu-toggle){display:none}
   .svc-grid{grid-template-columns:1fr}
+  .svc{padding:34px 26px}
   .why-grid{grid-template-columns:1fr;gap:0}
+  .why-item{padding:28px 0}
+  .why-item p{padding-left:0;margin-top:4px}
+  .why-item .k{gap:14px}
   .flow{grid-template-columns:1fr;gap:0;border-left:1px solid var(--line-soft);margin-left:16px}
   .step{padding:0 0 40px 28px}
   .step .dot{position:absolute;left:-7px;top:0;margin-bottom:0}
@@ -294,9 +298,13 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .step:not(:last-child)::after{display:none}
   .step:last-child{padding-bottom:0}
   .plan-grid,.work-grid{grid-template-columns:1fr}
+  .plan{padding:32px 26px}
   .contact-grid{grid-template-columns:1fr;gap:48px}
-  section{padding:90px 0}
+  section{padding:80px 0}
+  .s-head{margin-bottom:44px}
   .field-row{grid-template-columns:1fr}
+  .field-check{flex-wrap:wrap}
+  .foot-cols{gap:36px 48px}
   .mobile-nav.open{display:flex}
 }
 @media(max-width:560px){
@@ -304,6 +312,15 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   header{padding:14px 22px}
   .flow{grid-template-columns:1fr}
   .brand .name{font-size:1.05rem;letter-spacing:.1em}
+  .hero{padding-top:76px}
+  .hero-eyebrow{font-size:.6rem;letter-spacing:.22em;text-align:center;gap:.6rem}
+  .hero-eyebrow::before{width:20px}
+  .hero h1{margin-top:32px}
+  .hero-cta{flex-direction:column;width:100%;max-width:320px;margin-left:auto;margin-right:auto}
+  .hero-cta .btn{width:100%;text-align:center}
+  section{padding:64px 0}
+  .svc{padding:30px 22px}
+  .plan{padding:28px 22px}
 }
 /* mobile nav drawer */
 .mobile-nav{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,10,11,.97);
