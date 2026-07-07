@@ -285,6 +285,8 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   nav.links{display:none}
   .menu-toggle{display:block}
   header .btn:not(.menu-toggle){display:none}
+  .hero{min-height:auto;padding-top:120px;padding-bottom:70px}
+  .hero-logo{width:180px}
   .svc-grid{grid-template-columns:1fr}
   .svc{padding:34px 26px}
   .why-grid{grid-template-columns:1fr;gap:0}
@@ -312,12 +314,15 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   header{padding:14px 22px}
   .flow{grid-template-columns:1fr}
   .brand .name{font-size:1.05rem;letter-spacing:.1em}
-  .hero{padding-top:76px}
-  .hero-eyebrow{font-size:.6rem;letter-spacing:.22em;text-align:center;gap:.6rem}
+  .hero{min-height:auto;padding-top:100px;padding-bottom:64px}
+  .hero-logo{width:140px}
+  .hero-eyebrow{font-size:.6rem;letter-spacing:.22em;text-align:center;gap:.6rem;margin-top:36px}
   .hero-eyebrow::before{width:20px}
-  .hero h1{margin-top:32px}
-  .hero-cta{flex-direction:column;width:100%;max-width:320px;margin-left:auto;margin-right:auto}
+  .hero h1{margin-top:26px;line-height:1.65}
+  .hero .lead{margin-top:22px;line-height:1.9}
+  .hero-cta{flex-direction:column;width:100%;max-width:320px;margin-left:auto;margin-right:auto;margin-top:36px}
   .hero-cta .btn{width:100%;text-align:center}
+  .hero-note{margin-top:24px}
   section{padding:64px 0}
   .svc{padding:30px 22px}
   .plan{padding:28px 22px}
