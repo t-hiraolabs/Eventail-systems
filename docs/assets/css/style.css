@@ -63,6 +63,13 @@ section{position:relative;padding:128px 0}
 .divider::before{left:18%}
 .divider::after{right:18%}
 
+/* ---------- accessibility ---------- */
+.skip-link{position:absolute;left:-999px;top:auto;background:var(--white);color:var(--ink);
+  padding:12px 20px;z-index:1000;border-radius:0 0 8px 0}
+.skip-link:focus{left:0;top:0}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--white);outline-offset:2px}
+
 /* ---------- header ---------- */
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -124,6 +131,8 @@ nav.links a:hover::after{width:100%}
 .hero-cta{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap;justify-content:center;
   position:relative;z-index:2}
 .scroll-cue{display:none}
+.hero-eyebrow{margin-top:32px;position:relative;z-index:2}
+.hero-note{margin-top:20px;font-size:.78rem;color:var(--smoke-dim);position:relative;z-index:2}
 
 /* ---------- section heading ---------- */
 .s-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
@@ -147,6 +156,8 @@ nav.links a:hover::after{width:100%}
 .svc .en{font-family:var(--util);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--smoke-dim);margin-bottom:20px}
 .svc p{color:var(--smoke);font-size:.92rem;font-weight:300}
+.svc .benefit{margin-top:14px;font-size:.82rem;color:var(--smoke);font-weight:300}
+.svc .benefit strong{color:var(--white);font-weight:500}
 .svc ul{margin-top:22px;list-style:none;display:flex;flex-direction:column;gap:9px}
 .svc ul li{font-size:.84rem;color:var(--smoke);padding-left:18px;position:relative;font-weight:300}
 .svc ul li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;
@@ -193,6 +204,8 @@ nav.links a:hover::after{width:100%}
 .plan ul li{font-size:.86rem;color:var(--smoke);font-weight:300;padding-left:20px;position:relative}
 .plan ul li::before{content:"+";position:absolute;left:0;color:var(--white)}
 .plan .btn{margin-top:auto;text-align:center}
+.plan-featured{border-color:var(--white)}
+.plan-featured:hover{border-color:var(--white)}
 
 /* ---------- works ---------- */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -208,6 +221,7 @@ nav.links a:hover::after{width:100%}
 .work .body{padding:26px 24px}
 .work .body h3{font-family:var(--jp-serif);font-size:1.1rem;font-weight:600;margin-bottom:8px}
 .work .body p{font-size:.84rem;color:var(--smoke);font-weight:300}
+.works-note{margin-top:30px;font-size:.78rem;color:var(--smoke-dim)}
 
 /* ---------- contact ---------- */
 .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:72px;align-items:start}
@@ -234,6 +248,10 @@ form{display:flex;flex-direction:column;gap:22px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .form-note{font-size:.74rem;color:var(--smoke-dim);font-weight:300}
 form .btn{align-self:flex-start;margin-top:6px;padding:15px 40px}
+.field-check{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--smoke);cursor:pointer}
+.field-check input{width:16px;height:16px;accent-color:var(--white)}
+.field-check a{text-decoration:underline;color:var(--white)}
+.form-success{font-family:var(--jp-serif);font-size:1.1rem;color:var(--white);padding:40px 0}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
