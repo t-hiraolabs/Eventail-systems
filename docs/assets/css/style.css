@@ -303,6 +303,7 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .wrap{padding:0 22px}
   header{padding:14px 22px}
   .flow{grid-template-columns:1fr}
+  .brand .name{font-size:1.05rem;letter-spacing:.1em}
 }
 /* mobile nav drawer */
 .mobile-nav{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,10,11,.97);
