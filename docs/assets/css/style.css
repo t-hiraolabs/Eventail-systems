@@ -70,6 +70,25 @@ section{position:relative;padding:128px 0}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
   outline:2px solid var(--white);outline-offset:2px}
 
+/* ---------- intro ---------- */
+.intro{
+  position:fixed;inset:0;z-index:300;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:var(--ink);
+  opacity:1;visibility:visible;
+  transition:opacity 1s ease,visibility 1s ease;
+}
+.intro-logo{width:96px;height:96px}
+.intro-eyebrow{font-family:var(--util);font-size:.72rem;letter-spacing:.3em;color:var(--smoke);
+  text-align:center;padding:0 20px}
+.intro-name{font-family:var(--display);font-size:1.6rem;letter-spacing:.3em;padding-left:.3em;
+  color:var(--white)}
+.intro.intro-hide{opacity:0;visibility:hidden;pointer-events:none}
+body.intro-active{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+  .intro{display:none}
+}
+
 /* ---------- header ---------- */
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
