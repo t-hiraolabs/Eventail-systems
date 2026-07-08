@@ -78,7 +78,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   opacity:1;visibility:visible;
   transition:opacity 1s ease,visibility 1s ease;
 }
-.intro-logo{width:96px;height:96px}
+.intro-logo{width:160px;height:160px}
 .intro-eyebrow{font-family:var(--util);font-size:.72rem;letter-spacing:.2em;color:var(--smoke);
   text-align:center;padding:0 20px;line-height:1.8}
 .intro-name{font-family:var(--display);font-size:1.6rem;letter-spacing:.3em;padding-left:.3em;
@@ -131,13 +131,6 @@ nav.links a:hover::after{width:100%}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
   align-items:center;text-align:center;padding-top:90px;padding-bottom:60px;overflow:hidden;
   position:relative}
-.hero-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  pointer-events:none;opacity:.5;z-index:0}
-.hero-rings svg{width:min(118vh,1100px);height:min(118vh,1100px);max-width:140vw}
-.ring-stroke{fill:none;stroke:var(--line);stroke-width:1}
-.ring-node{fill:var(--white)}
-.ring-rot{transform-origin:center;animation:spin 90s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 .hero-logo{width:clamp(220px,34vw,360px);height:auto;
   position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6))}
 .hero h1{font-family:var(--jp-serif);font-weight:500;font-size:clamp(1.5rem,4vw,2.7rem);
