@@ -86,7 +86,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .intro.intro-hide{opacity:0;visibility:hidden;pointer-events:none}
 body.intro-active{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
-  .intro{display:none}
+  .intro{transition:none}
 }
 
 /* ---------- header ---------- */

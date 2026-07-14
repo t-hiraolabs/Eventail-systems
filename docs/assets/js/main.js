@@ -2,14 +2,15 @@
 // 初回訪問時のみ、数秒間 Hero 相当の情報を全画面表示してから通常表示へ切り替える
 (function(){
   const intro = document.getElementById('intro');
+  if(!intro) return;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!intro || reduceMotion){ if(intro) intro.remove(); return; }
   document.body.classList.add('intro-active');
   window.setTimeout(()=>{
     intro.classList.add('intro-hide');
     document.body.classList.remove('intro-active');
-    intro.addEventListener('transitionend', ()=> intro.remove(), {once:true});
-  }, 2200);
+    if(reduceMotion){ intro.remove(); }
+    else{ intro.addEventListener('transitionend', ()=> intro.remove(), {once:true}); }
+  }, reduceMotion ? 1200 : 2200);
 })();
 
 // ----- year -----
