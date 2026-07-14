@@ -8,8 +8,7 @@
   window.setTimeout(()=>{
     intro.classList.add('intro-hide');
     document.body.classList.remove('intro-active');
-    if(reduceMotion){ intro.remove(); }
-    else{ intro.addEventListener('transitionend', ()=> intro.remove(), {once:true}); }
+    intro.addEventListener('transitionend', ()=> intro.remove(), {once:true});
   }, reduceMotion ? 1200 : 2200);
 })();
 
