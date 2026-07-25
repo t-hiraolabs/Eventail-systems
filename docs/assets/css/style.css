@@ -165,6 +165,7 @@ nav.links a:hover::after{width:100%}
 .svc .en{font-family:var(--util);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--smoke-dim);margin-bottom:20px}
 .svc p{color:var(--smoke);font-size:.92rem;font-weight:300}
+.svc .pain{color:var(--white);font-size:.9rem;font-weight:400;margin-bottom:14px;line-height:1.8}
 .svc .benefit{margin-top:14px;font-size:.82rem;color:var(--smoke);font-weight:300}
 .svc .benefit strong{color:var(--white);font-weight:500}
 .svc ul{margin-top:22px;list-style:none;display:flex;flex-direction:column;gap:9px}
