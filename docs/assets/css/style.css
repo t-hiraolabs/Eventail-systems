@@ -128,6 +128,21 @@ nav.links a:hover::after{width:100%}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
   align-items:center;text-align:center;padding-top:90px;padding-bottom:60px;overflow:hidden;
   position:relative}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero-glow{position:absolute;top:8%;left:50%;transform:translateX(-50%);
+  width:min(70vw,760px);height:min(70vw,760px);border-radius:50%;
+  background:radial-gradient(circle,rgba(247,247,245,.14) 0%,rgba(247,247,245,.05) 38%,transparent 68%);
+  filter:blur(2px)}
+.hero-grid{position:absolute;inset:0;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 0%,transparent 72%);
+  mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 0%,transparent 72%);
+  opacity:.6}
+.hero-arc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(90vh,900px);height:min(90vh,900px);max-width:150vw;
+  fill:none;stroke:var(--line);stroke-width:1;opacity:.5}
 .hero-logo{width:clamp(220px,34vw,360px);height:auto;
   position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6))}
 .hero h1{font-family:var(--jp-serif);font-weight:500;font-size:clamp(1.5rem,4vw,2.7rem);
