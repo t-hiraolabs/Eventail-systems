@@ -82,7 +82,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   opacity:1;visibility:visible;
   transition:opacity 1s ease,visibility 1s ease;
 }
-.intro-logo{width:160px;height:160px}
+.intro-logo{width:160px;height:auto}
 .intro-eyebrow{font-family:var(--util);font-size:.72rem;letter-spacing:.2em;color:var(--smoke);
   text-align:center;padding:0 20px;line-height:1.8}
 .intro-name{font-family:var(--display);font-size:1.6rem;letter-spacing:.3em;padding-left:.3em;
