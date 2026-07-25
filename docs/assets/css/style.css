@@ -17,7 +17,7 @@
   --util:"Inter",sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{
   background:var(--ink);
   color:var(--white);
@@ -100,8 +100,10 @@ header{
   transition:background .4s ease,border-color .4s ease,padding .4s ease;
 }
 header.scrolled{
-  background:rgba(10,10,11,.82);
-  backdrop-filter:blur(14px);
+  /* スクロール時：背景を少し濃くし、ぼかしを強めて高級感のあるガラス表現に */
+  background:rgba(5,6,8,.78);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line-soft);
   padding:12px 32px;
 }
@@ -134,11 +136,16 @@ nav.links a:hover::after{width:100%}
 .btn-gold:hover{background:linear-gradient(120deg,var(--gold-2) 0%,var(--gold-3) 100%);
   color:var(--ink);border-color:transparent;
   transform:translateY(-3px);box-shadow:0 14px 34px rgba(216,185,139,.4)}
-.menu-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer}
+.btn-gold:active{transform:scale(.97);box-shadow:0 6px 16px rgba(184,141,88,.3)}
+.menu-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer;
+  min-width:44px;min-height:44px;align-items:center;justify-content:center}
 .menu-toggle:hover,.menu-toggle:focus,.menu-toggle:active{background:none;color:var(--white);border:none}
 
 /* ---------- hero ---------- */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+.hero{
+  /* 動的ビューポート単位に対応（対応ブラウザではsvh/dvhが優先される） */
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
   align-items:center;text-align:center;padding:90px 32px 60px;overflow:hidden;
   position:relative}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
@@ -153,7 +160,7 @@ nav.links a:hover::after{width:100%}
   -webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 0%,transparent 72%);
   mask-image:radial-gradient(ellipse 60% 50% at 50% 30%,#000 0%,transparent 72%);
   opacity:.5}
-.hero-sweep{position:absolute;right:-30%;bottom:-30%;width:90vw;height:90vw;max-width:900px;max-height:900px;
+.hero-sweep{position:absolute;right:-10%;bottom:-20%;width:min(70vw,560px);height:min(70vw,560px);
   background:radial-gradient(circle,rgba(216,185,139,.16) 0%,rgba(184,141,88,.06) 45%,transparent 72%);
   animation:sweep-drift 16s ease-in-out infinite}
 @keyframes glow-pulse{0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
@@ -176,8 +183,13 @@ nav.links a:hover::after{width:100%}
 .hero-cta{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;justify-content:center;
   position:relative;z-index:2}
 .scroll-cue{display:none}
-.hero-eyebrow{margin-top:24px;position:relative;z-index:2}
-.hero-eyebrow::before{background:linear-gradient(90deg,transparent,var(--gold))}
+/* 所在地表示：中央揃え・上下2行・左右に細いゴールドのライン */
+.hero-locale{margin-top:24px;position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;gap:16px}
+.hero-locale-line{width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim));flex:0 0 auto}
+.hero-locale-line:last-child{background:linear-gradient(90deg,var(--gold-dim),transparent)}
+.hero-locale-text{font-family:var(--util);font-size:.8rem;line-height:1.9;letter-spacing:.06em;
+  color:var(--smoke);text-align:center}
 .hero-note{margin-top:20px;font-size:.78rem;color:var(--smoke-dim);position:relative;z-index:2}
 
 .hero-steps{width:100%;max-width:1040px;margin:64px auto 0;position:relative;z-index:2}
@@ -340,7 +352,7 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
 @media(max-width:900px){
   .scroll-cue{display:none}
   nav.links{display:none}
-  .menu-toggle{display:block}
+  .menu-toggle{display:inline-flex}
   header .btn:not(.menu-toggle){display:none}
   .hero{min-height:auto;padding-top:120px;padding-bottom:70px}
   .hero-steps-grid{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -373,8 +385,9 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .flow{grid-template-columns:1fr}
   .brand .name{font-size:1.05rem;letter-spacing:.1em}
   .hero{min-height:auto;padding:100px 32px 64px}
-  .hero-eyebrow{font-size:.6rem;letter-spacing:.22em;text-align:center;gap:.6rem;margin-top:24px}
-  .hero-eyebrow::before{width:20px}
+  .hero-locale{margin-top:22px;gap:12px}
+  .hero-locale-line{width:20px}
+  .hero-locale-text{font-size:.76rem}
   .hero-copy{text-align:center}
   .hero h1{line-height:1.7;font-size:1.3rem}
   .hero-sub{text-align:center;border-left:none;border-top:1px solid var(--gold);
