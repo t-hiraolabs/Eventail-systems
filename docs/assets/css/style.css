@@ -169,9 +169,11 @@ nav.links a:hover::after{width:100%}
   line-height:1.4;letter-spacing:.06em;position:relative;z-index:2}
 .hero h1 .light{color:var(--smoke);font-weight:300;font-size:.72em}
 .hero h1 .nbr{display:inline-block}
-.hero-sub{margin-top:18px;color:var(--smoke);font-size:1.02rem;font-weight:300;
-  position:relative;z-index:2;line-height:1.9;padding-left:16px;
-  border-left:2px solid var(--gold)}
+.hero-lead{margin-top:18px;color:var(--white);font-size:1.15rem;font-weight:400;
+  position:relative;z-index:2;line-height:1.7;padding-left:16px;
+  border-left:2px solid var(--gold);font-family:var(--jp-serif)}
+.hero-sub{margin-top:16px;color:var(--smoke);font-size:.92rem;font-weight:300;
+  position:relative;z-index:2;line-height:1.9;padding-left:16px}
 .hero .lead{max-width:600px;margin:22px auto 0;color:var(--smoke);font-size:.9rem;
   font-weight:300;position:relative;z-index:2;line-height:2;
   text-shadow:0 0 24px var(--ink),0 0 48px var(--ink),0 2px 8px var(--ink)}
@@ -385,9 +387,9 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .hero-locale-text{font-size:.76rem}
   .hero-copy{text-align:center}
   .hero h1{line-height:1.7;font-size:1.3rem}
-  .hero-sub{text-align:center;border-left:none;border-top:1px solid var(--gold);
-    padding-left:0;padding-top:14px;margin-top:18px;display:inline-block}
-  .hero .lead{margin-top:18px;line-height:2;font-size:.86rem;max-width:320px}
+  .hero-lead{text-align:center;border-left:none;border-top:1px solid var(--gold);
+    padding-left:0;padding-top:14px;margin-top:18px;display:inline-block;font-size:1.02rem}
+  .hero-sub{text-align:center;padding-left:0;margin-top:14px;font-size:.86rem}
   .hero-cta{flex-direction:column;width:100%;margin-top:32px}
   .hero-cta .btn{width:100%;text-align:center;justify-content:center}
   .hero-note{margin-top:24px}
