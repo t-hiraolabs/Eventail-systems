@@ -7,6 +7,9 @@
   --white:#f7f7f5;
   --smoke:#9a9aa0;
   --smoke-dim:#6a6a70;
+  --gold:#c9a566;
+  --gold-2:#e8c98a;
+  --gold-dim:#8a744f;
   --display:"Cormorant Garamond",serif;
   --jp-serif:"Shippori Mincho",serif;
   --jp:"Zen Kaku Gothic New",sans-serif;
@@ -121,6 +124,12 @@ nav.links a:hover::after{width:100%}
 .btn:hover{background:var(--white);color:var(--ink);border-color:var(--white)}
 .btn-solid{background:var(--white);color:var(--ink);border-color:var(--white)}
 .btn-solid:hover{background:transparent;color:var(--white);border-color:var(--line)}
+.btn-gold{background:linear-gradient(120deg,var(--gold) 0%,var(--gold-2) 100%);
+  color:var(--ink);border-color:transparent;
+  display:inline-flex;align-items:center;gap:10px;
+  box-shadow:0 8px 24px rgba(201,165,102,.25)}
+.btn-gold:hover{background:linear-gradient(120deg,var(--gold-2) 0%,var(--gold) 100%);
+  color:var(--ink);border-color:transparent}
 .menu-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer}
 .menu-toggle:hover,.menu-toggle:focus,.menu-toggle:active{background:none;color:var(--white);border:none}
 
@@ -131,7 +140,7 @@ nav.links a:hover::after{width:100%}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .hero-glow{position:absolute;top:8%;left:50%;transform:translateX(-50%);
   width:min(70vw,760px);height:min(70vw,760px);border-radius:50%;
-  background:radial-gradient(circle,rgba(247,247,245,.14) 0%,rgba(247,247,245,.05) 38%,transparent 68%);
+  background:radial-gradient(circle,rgba(201,165,102,.16) 0%,rgba(201,165,102,.05) 38%,transparent 68%);
   filter:blur(2px)}
 .hero-grid{position:absolute;inset:0;
   background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),
@@ -142,7 +151,11 @@ nav.links a:hover::after{width:100%}
   opacity:.6}
 .hero-arc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:min(90vh,900px);height:min(90vh,900px);max-width:150vw;
-  fill:none;stroke:var(--line);stroke-width:1;opacity:.5}
+  fill:none;stroke:var(--gold-dim);stroke-width:1;opacity:.55}
+.hero-arc circle:first-child{stroke-dasharray:2 6}
+.hero-nodes{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(90vh,900px);height:min(90vh,900px);max-width:150vw;pointer-events:none}
+.hero-nodes circle{fill:var(--gold-2)}
 .hero-logo{width:clamp(220px,34vw,360px);height:auto;
   position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6))}
 .hero h1{font-family:var(--jp-serif);font-weight:500;font-size:clamp(1.5rem,4vw,2.7rem);
@@ -156,7 +169,21 @@ nav.links a:hover::after{width:100%}
   position:relative;z-index:2}
 .scroll-cue{display:none}
 .hero-eyebrow{margin-top:32px;position:relative;z-index:2}
+.hero-eyebrow::before{background:linear-gradient(90deg,transparent,var(--gold))}
 .hero-note{margin-top:20px;font-size:.78rem;color:var(--smoke-dim);position:relative;z-index:2}
+
+.hero-steps{width:100%;max-width:1040px;margin:64px auto 0;position:relative;z-index:2;
+  background:rgba(20,20,23,.6);border:1px solid var(--line-soft);border-radius:20px;
+  padding:36px 28px;backdrop-filter:blur(6px)}
+.hero-steps-title{display:block;text-align:center;font-family:var(--util);font-size:.7rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2);margin-bottom:28px}
+.hero-steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft)}
+.hero-step{background:transparent;padding:0 20px;text-align:center;
+  border-right:1px solid var(--line-soft)}
+.hero-step:last-child{border-right:none}
+.hero-step svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.4;margin:0 auto 14px}
+.hero-step h3{font-family:var(--jp-serif);font-size:.98rem;font-weight:600;margin-bottom:8px}
+.hero-step p{font-size:.78rem;color:var(--smoke);font-weight:300;line-height:1.7}
 
 /* ---------- section heading ---------- */
 .s-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
@@ -309,6 +336,11 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .menu-toggle{display:block}
   header .btn:not(.menu-toggle){display:none}
   .hero{min-height:auto;padding-top:120px;padding-bottom:70px}
+  .hero-steps-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-step{border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+    padding:20px 12px}
+  .hero-step:nth-child(2n){border-right:none}
+  .hero-step:nth-last-child(-n+2){border-bottom:none}
   .svc-grid{grid-template-columns:1fr}
   .svc{padding:34px 26px}
   .why-grid{grid-template-columns:1fr;gap:0}
