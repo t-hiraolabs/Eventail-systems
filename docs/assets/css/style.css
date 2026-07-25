@@ -161,11 +161,11 @@ nav.links a:hover::after{width:100%}
   filter:blur(2px);animation:glow-pulse 10s ease-in-out infinite}
 @keyframes glow-pulse{0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
 @keyframes logo-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-/* Hero上部：テキスト左・ロゴ右の横並び（スマホ含む全幅で維持） */
-.hero-top{width:100%;max-width:900px;display:flex;align-items:center;
+/* Hero上部：テキスト左・ロゴ右下の横並び（スマホ含む全幅で維持） */
+.hero-top{width:100%;max-width:960px;display:flex;align-items:flex-end;
   justify-content:space-between;gap:16px;position:relative;z-index:2}
 .hero-copy{flex:1 1 auto;min-width:0;text-align:left;position:relative;z-index:2}
-.hero-logo{flex:0 0 auto;width:clamp(130px,38vw,300px);height:auto;
+.hero-logo{flex:0 0 auto;width:clamp(170px,46vw,380px);height:auto;
   position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6));
   animation:logo-float 7s ease-in-out infinite}
 .hero h1{font-family:var(--jp-serif);font-weight:300;font-size:clamp(1.7rem,6vw,3rem);
@@ -388,12 +388,12 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .hero-locale{margin-top:22px;gap:12px}
   .hero-locale-line{width:20px}
   .hero-locale-text{font-size:.76rem}
-  /* テキスト左・ロゴ右の横並びを維持しつつ、狭い画面向けに詰める */
-  .hero-top{gap:8px;align-items:center}
-  .hero-logo{width:clamp(96px,30vw,180px)}
-  .hero h1{line-height:1.5;font-size:1.18rem}
-  .hero-lead{font-size:.84rem;padding-left:10px;margin-top:10px;line-height:1.6}
-  .hero-sub{padding-left:10px;margin-top:10px;font-size:.7rem;line-height:1.7}
+  /* テキスト左・ロゴ右下の横並びを維持しつつ、狭い画面向けに詰める */
+  .hero-top{gap:6px;align-items:flex-end}
+  .hero-logo{width:clamp(140px,44vw,220px)}
+  .hero h1{line-height:1.4;font-size:1.05rem}
+  .hero-lead{font-size:.76rem;padding-left:8px;margin-top:10px;line-height:1.55}
+  .hero-sub{padding-left:8px;margin-top:8px;font-size:.66rem;line-height:1.6}
   .hero-cta{flex-direction:column;width:100%;margin-top:32px}
   .hero-cta .btn{width:100%;text-align:center;justify-content:center}
   .hero-note{margin-top:24px}
