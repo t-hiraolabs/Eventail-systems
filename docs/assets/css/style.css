@@ -161,22 +161,24 @@ nav.links a:hover::after{width:100%}
   filter:blur(2px);animation:glow-pulse 10s ease-in-out infinite}
 @keyframes glow-pulse{0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
 @keyframes logo-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-/* Hero上部：テキスト左・ロゴ右下の横並び（スマホ含む全幅で維持） */
-.hero-top{width:100%;max-width:960px;display:flex;align-items:flex-end;
-  justify-content:space-between;gap:16px;position:relative;z-index:2}
-.hero-copy{flex:1 1 auto;min-width:0;text-align:left;position:relative;z-index:2}
-.hero-logo{flex:0 0 auto;width:clamp(170px,46vw,380px);height:auto;
-  position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6));
+/* Hero上部：テキストは中央よりやや左寄り・大きめ、ロゴは右下に大きく独立配置 */
+.hero-top{width:100%;max-width:1040px;position:relative;z-index:2;
+  padding-bottom:clamp(160px,44vw,320px)}
+.hero-copy{width:100%;max-width:600px;margin:0 auto;margin-right:12%;
+  text-align:left;position:relative;z-index:2}
+.hero-logo{position:absolute;right:0;bottom:0;
+  width:clamp(220px,52vw,420px);height:auto;z-index:1;
+  filter:drop-shadow(0 0 60px rgba(0,0,0,.6));
   animation:logo-float 7s ease-in-out infinite}
-.hero h1{font-family:var(--jp-serif);font-weight:300;font-size:clamp(1.7rem,6vw,3rem);
-  line-height:1.4;letter-spacing:.06em;position:relative;z-index:2}
+.hero h1{font-family:var(--jp-serif);font-weight:300;font-size:clamp(2.1rem,8vw,3.4rem);
+  line-height:1.35;letter-spacing:.06em;position:relative;z-index:2}
 .hero h1 .light{color:var(--smoke);font-weight:300;font-size:.72em}
 .hero h1 .nbr{display:inline-block}
-.hero-lead{margin-top:18px;color:var(--white);font-size:1.15rem;font-weight:400;
-  position:relative;z-index:2;line-height:1.7;padding-left:16px;
+.hero-lead{margin-top:20px;color:var(--white);font-size:1.3rem;font-weight:400;
+  position:relative;z-index:2;line-height:1.6;padding-left:18px;
   border-left:2px solid var(--gold);font-family:var(--jp-serif)}
-.hero-sub{margin-top:16px;color:var(--smoke);font-size:.92rem;font-weight:300;
-  position:relative;z-index:2;line-height:1.9;padding-left:16px}
+.hero-sub{margin-top:18px;color:var(--smoke);font-size:1rem;font-weight:300;
+  position:relative;z-index:2;line-height:1.85;padding-left:18px}
 .hero .lead{max-width:600px;margin:22px auto 0;color:var(--smoke);font-size:.9rem;
   font-weight:300;position:relative;z-index:2;line-height:2;
   text-shadow:0 0 24px var(--ink),0 0 48px var(--ink),0 2px 8px var(--ink)}
@@ -388,12 +390,13 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .hero-locale{margin-top:22px;gap:12px}
   .hero-locale-line{width:20px}
   .hero-locale-text{font-size:.76rem}
-  /* テキスト左・ロゴ右下の横並びを維持しつつ、狭い画面向けに詰める */
-  .hero-top{gap:6px;align-items:flex-end}
-  .hero-logo{width:clamp(140px,44vw,220px)}
-  .hero h1{line-height:1.4;font-size:1.05rem}
-  .hero-lead{font-size:.76rem;padding-left:8px;margin-top:10px;line-height:1.55}
-  .hero-sub{padding-left:8px;margin-top:8px;font-size:.66rem;line-height:1.6}
+  /* テキストは中央よりやや左寄り・大きめ、ロゴは右下に大きく独立配置 */
+  .hero-top{padding-bottom:56vw}
+  .hero-copy{max-width:88%;margin-right:8%}
+  .hero-logo{width:64vw;max-width:280px}
+  .hero h1{line-height:1.4;font-size:1.65rem}
+  .hero-lead{font-size:1.05rem;padding-left:12px;margin-top:14px;line-height:1.55}
+  .hero-sub{padding-left:12px;margin-top:12px;font-size:.84rem;line-height:1.7}
   .hero-cta{flex-direction:column;width:100%;margin-top:32px}
   .hero-cta .btn{width:100%;text-align:center;justify-content:center}
   .hero-note{margin-top:24px}
