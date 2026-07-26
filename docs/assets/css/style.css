@@ -203,6 +203,7 @@ nav.links a:hover::after{width:100%}
   transition:border-color .4s,transform .4s}
 .hero-step:hover{border-color:rgba(200,166,106,.4);transform:translateY(-3px)}
 .hero-step svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.2;margin:0 auto 14px}
+.hero-step img{width:36px;height:auto;margin:0 auto 14px;display:block}
 .hero-step h3{font-family:var(--jp-serif);font-size:.98rem;font-weight:600;margin-bottom:8px}
 .hero-step p{font-size:.78rem;color:var(--smoke);font-weight:300;line-height:1.7}
 
