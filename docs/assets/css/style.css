@@ -358,6 +358,17 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .hero h1{font-size:clamp(3rem,5.4vw,4.4rem)}
   .hero-lead{font-size:1.5rem}
   .hero-sub{font-size:1.08rem;max-width:520px}
+
+  /* PC：ロゴを上げつつ全体の余白を詰め、最初の1画面に
+     「相談・お見積りは無料です」までが収まるようにする */
+  .hero{padding:84px 32px 24px}
+  .hero-top{padding-bottom:clamp(90px,20vw,180px)}
+  .hero-logo{width:clamp(160px,26vw,240px);bottom:4vw}
+  .hero-lead{margin-top:14px}
+  .hero-sub{margin-top:12px}
+  .hero-locale{margin-top:16px}
+  .hero-cta{margin-top:22px}
+  .hero-note{margin-top:12px}
 }
 @media(max-width:900px){
   .scroll-cue{display:none}
