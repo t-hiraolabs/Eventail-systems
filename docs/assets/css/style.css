@@ -351,6 +351,14 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
 .reveal.in{opacity:1;transform:none}
 
 /* ---------- responsive ---------- */
+@media(min-width:901px){
+  /* PC：テキストブロックをより左寄りに、文字サイズも大きく */
+  .hero-top{max-width:1240px}
+  .hero-copy{max-width:640px;margin-right:26%}
+  .hero h1{font-size:clamp(3rem,5.4vw,4.4rem)}
+  .hero-lead{font-size:1.5rem}
+  .hero-sub{font-size:1.08rem;max-width:520px}
+}
 @media(max-width:900px){
   .scroll-cue{display:none}
   nav.links{display:none}
