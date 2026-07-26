@@ -394,20 +394,21 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   header{padding:14px 22px}
   .flow{grid-template-columns:1fr}
   .brand .name{font-size:1.05rem;letter-spacing:.1em}
-  .hero{min-height:auto;padding:100px 22px 64px}
-  .hero-locale{margin-top:22px;gap:12px}
+  .hero{min-height:auto;padding:80px 22px 24px}
+  .hero-locale{margin-top:12px;gap:12px}
   .hero-locale-line{width:20px}
   .hero-locale-text{font-size:.76rem}
-  /* テキストは中央よりやや左寄り・大きめ、ロゴは右下に大きく独立配置 */
-  .hero-top{padding-bottom:56vw}
+  /* テキストは中央よりやや左寄り・大きめ、ロゴは右下・やや上寄りに配置して
+     最初の1画面に「相談・お見積りは無料です」までが収まるようにする */
+  .hero-top{padding-bottom:40vw}
   .hero-copy{max-width:88%;margin-right:8%}
-  .hero-logo{width:64vw;max-width:280px}
-  .hero h1{line-height:1.4;font-size:1.65rem}
-  .hero-lead{font-size:1.05rem;padding-left:12px;margin-top:14px;line-height:1.55}
-  .hero-sub{padding-left:12px;margin-top:12px;font-size:.84rem;line-height:1.7}
-  .hero-cta{flex-direction:column;width:100%;margin-top:32px}
-  .hero-cta .btn{width:100%;text-align:center;justify-content:center}
-  .hero-note{margin-top:24px}
+  .hero-logo{width:52vw;max-width:230px;bottom:6vw}
+  .hero h1{line-height:1.35;font-size:1.5rem}
+  .hero-lead{font-size:.98rem;padding-left:12px;margin-top:10px;line-height:1.5}
+  .hero-sub{padding-left:12px;margin-top:10px;font-size:.8rem;line-height:1.6}
+  .hero-cta{flex-direction:column;width:100%;margin-top:20px}
+  .hero-cta .btn{width:100%;text-align:center;justify-content:center;height:52px}
+  .hero-note{margin-top:10px;font-size:.72rem}
   section{padding:64px 0}
   .svc{padding:30px 22px}
   .plan{padding:28px 22px}
