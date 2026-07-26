@@ -365,7 +365,7 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .hero{padding:84px 32px 24px}
   .hero-top{padding-bottom:clamp(90px,20vw,180px)}
   /* テキストの右下あたりに来るよう、右端ではなく内側に配置 */
-  .hero-logo{width:clamp(160px,26vw,240px);bottom:4vw;right:auto;left:52%}
+  .hero-logo{width:clamp(160px,26vw,240px);bottom:4vw;right:auto;left:67%}
   .hero-lead{margin-top:14px}
   .hero-sub{margin-top:12px}
   .hero-locale{margin-top:16px}
