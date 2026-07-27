@@ -222,9 +222,14 @@ nav.links a:hover::after{width:100%}
 .svc{background:var(--ink);padding:46px 38px;position:relative;transition:background .4s}
 .svc:hover{background:var(--ink-2)}
 .svc .idx{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--smoke-dim)}
-.svc .icon{margin:26px 0 24px}
-.svc .icon svg{width:42px;height:42px;stroke:var(--white);fill:none;stroke-width:1.1}
-.svc .icon img{width:44px;height:auto;display:block}
+.svc .icon{margin:26px 0 24px;position:relative;display:inline-flex}
+/* アイコン背後にゴールドのグロー（バックライト）を追加 */
+.svc .icon::before{content:"";position:absolute;inset:-20px;z-index:0;
+  background:radial-gradient(circle,rgba(200,166,106,.45) 0%,rgba(200,166,106,.12) 45%,transparent 72%);
+  filter:blur(6px);pointer-events:none}
+.svc .icon svg{width:42px;height:42px;stroke:var(--white);fill:none;stroke-width:1.1;position:relative;z-index:1}
+.svc .icon img{width:44px;height:auto;display:block;position:relative;z-index:1;
+  filter:drop-shadow(0 0 14px rgba(200,166,106,.65))}
 .svc h3{font-family:var(--jp-serif);font-size:1.32rem;font-weight:600;letter-spacing:.04em;
   margin-bottom:8px}
 .svc .en{font-family:var(--util);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
