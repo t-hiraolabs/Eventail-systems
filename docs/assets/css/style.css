@@ -26,7 +26,20 @@ body{
   line-height:1.85;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  position:relative;
 }
+/* ゴールドの波模様テクスチャをセクションごとにまばらに配置 */
+.texture-scatter{position:relative}
+.texture-scatter::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:url("../images/texture-gold-wave.jpg");
+  background-repeat:no-repeat;background-size:cover;
+  opacity:.32;mix-blend-mode:screen;
+}
+.texture-scatter.pos-tl::before{background-position:left top}
+.texture-scatter.pos-br::before{background-position:right bottom}
+.texture-scatter.pos-tr::before{background-position:right top}
+.texture-scatter > .wrap{position:relative;z-index:1}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
@@ -161,19 +174,24 @@ nav.links a:hover::after{width:100%}
   filter:blur(2px);animation:glow-pulse 10s ease-in-out infinite}
 @keyframes glow-pulse{0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
 @keyframes logo-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.hero-copy{width:100%;max-width:640px;text-align:left;position:relative;z-index:2}
-.hero-logo{width:clamp(180px,28vw,300px);height:auto;margin-top:38px;
-  position:relative;z-index:2;filter:drop-shadow(0 0 60px rgba(0,0,0,.6));
+/* Hero上部：テキストは中央よりやや左寄り・大きめ、ロゴは右下に大きく独立配置 */
+.hero-top{width:100%;max-width:1040px;position:relative;z-index:2;
+  padding-bottom:clamp(160px,44vw,320px)}
+.hero-copy{width:100%;max-width:600px;margin:0 auto;margin-right:12%;
+  text-align:left;position:relative;z-index:2}
+.hero-logo{position:absolute;right:0;bottom:0;
+  width:clamp(250px,58vw,470px);height:auto;z-index:1;
+  filter:drop-shadow(0 0 60px rgba(0,0,0,.6));
   animation:logo-float 7s ease-in-out infinite}
-.hero h1{font-family:var(--jp-serif);font-weight:300;font-size:clamp(1.7rem,6vw,3rem);
-  line-height:1.4;letter-spacing:.06em;position:relative;z-index:2}
+.hero h1{font-family:var(--jp-serif);font-weight:300;font-size:clamp(2.1rem,8vw,3.4rem);
+  line-height:1.35;letter-spacing:.06em;position:relative;z-index:2}
 .hero h1 .light{color:var(--smoke);font-weight:300;font-size:.72em}
 .hero h1 .nbr{display:inline-block}
-.hero-lead{margin-top:18px;color:var(--white);font-size:1.15rem;font-weight:400;
-  position:relative;z-index:2;line-height:1.7;padding-left:16px;
+.hero-lead{margin-top:20px;color:var(--white);font-size:1.3rem;font-weight:400;
+  position:relative;z-index:2;line-height:1.6;padding-left:18px;
   border-left:2px solid var(--gold);font-family:var(--jp-serif)}
-.hero-sub{margin-top:16px;color:var(--smoke);font-size:.92rem;font-weight:300;
-  position:relative;z-index:2;line-height:1.9;padding-left:16px}
+.hero-sub{margin-top:18px;color:var(--smoke);font-size:1rem;font-weight:300;
+  position:relative;z-index:2;line-height:1.85;padding-left:18px}
 .hero .lead{max-width:600px;margin:22px auto 0;color:var(--smoke);font-size:.9rem;
   font-weight:300;position:relative;z-index:2;line-height:2;
   text-shadow:0 0 24px var(--ink),0 0 48px var(--ink),0 2px 8px var(--ink)}
@@ -198,6 +216,7 @@ nav.links a:hover::after{width:100%}
   transition:border-color .4s,transform .4s}
 .hero-step:hover{border-color:rgba(200,166,106,.4);transform:translateY(-3px)}
 .hero-step svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.2;margin:0 auto 14px}
+.hero-step img{width:36px;height:auto;margin:0 auto 14px;display:block}
 .hero-step h3{font-family:var(--jp-serif);font-size:.98rem;font-weight:600;margin-bottom:8px}
 .hero-step p{font-size:.78rem;color:var(--smoke);font-weight:300;line-height:1.7}
 
@@ -218,6 +237,7 @@ nav.links a:hover::after{width:100%}
 .svc .idx{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--smoke-dim)}
 .svc .icon{margin:26px 0 24px}
 .svc .icon svg{width:42px;height:42px;stroke:var(--white);fill:none;stroke-width:1.1}
+.svc .icon img{width:44px;height:auto;display:block}
 .svc h3{font-family:var(--jp-serif);font-size:1.32rem;font-weight:600;letter-spacing:.04em;
   margin-bottom:8px}
 .svc .en{font-family:var(--util);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
@@ -346,6 +366,26 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
 .reveal.in{opacity:1;transform:none}
 
 /* ---------- responsive ---------- */
+@media(min-width:901px){
+  /* PC：テキストブロックをより左寄りに、文字サイズも大きく */
+  .hero-top{max-width:1240px}
+  .hero-copy{max-width:640px;margin-right:26%}
+  .hero h1{font-size:clamp(3rem,5.4vw,4.4rem)}
+  .hero-lead{font-size:1.5rem}
+  .hero-sub{font-size:1.08rem;max-width:520px}
+
+  /* PC：ロゴを上げつつ全体の余白を詰め、最初の1画面に
+     「相談・お見積りは無料です」までが収まるようにする */
+  .hero{padding:84px 32px 24px}
+  .hero-top{padding-bottom:clamp(90px,20vw,180px)}
+  /* テキストの右下あたりに来るよう、右端ではなく内側に配置 */
+  .hero-logo{width:clamp(230px,36vw,340px);bottom:4vw;right:auto;left:68%}
+  .hero-lead{margin-top:14px}
+  .hero-sub{margin-top:12px}
+  .hero-locale{margin-top:16px}
+  .hero-cta{margin-top:22px}
+  .hero-note{margin-top:12px}
+}
 @media(max-width:900px){
   .scroll-cue{display:none}
   nav.links{display:none}
@@ -381,15 +421,17 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   header{padding:14px 22px}
   .flow{grid-template-columns:1fr}
   .brand .name{font-size:1.05rem;letter-spacing:.1em}
-  .hero{min-height:auto;padding:100px 32px 64px}
+  .hero{min-height:auto;padding:100px 22px 64px}
   .hero-locale{margin-top:22px;gap:12px}
   .hero-locale-line{width:20px}
   .hero-locale-text{font-size:.76rem}
-  .hero-copy{text-align:center}
-  .hero h1{line-height:1.7;font-size:1.3rem}
-  .hero-lead{text-align:center;border-left:none;border-top:1px solid var(--gold);
-    padding-left:0;padding-top:14px;margin-top:18px;display:inline-block;font-size:1.02rem}
-  .hero-sub{text-align:center;padding-left:0;margin-top:14px;font-size:.86rem}
+  /* テキストは中央よりやや左寄り・大きめ、ロゴは右下に大きく独立配置 */
+  .hero-top{padding-bottom:56vw}
+  .hero-copy{max-width:88%;margin-right:8%}
+  .hero-logo{width:50vw;max-width:200px}
+  .hero h1{line-height:1.4;font-size:1.65rem}
+  .hero-lead{font-size:1.05rem;padding-left:12px;margin-top:14px;line-height:1.55}
+  .hero-sub{padding-left:12px;margin-top:12px;font-size:.84rem;line-height:1.7}
   .hero-cta{flex-direction:column;width:100%;margin-top:32px}
   .hero-cta .btn{width:100%;text-align:center;justify-content:center}
   .hero-note{margin-top:24px}
