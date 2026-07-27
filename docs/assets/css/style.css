@@ -224,6 +224,7 @@ nav.links a:hover::after{width:100%}
 .svc .idx{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--smoke-dim)}
 .svc .icon{margin:26px 0 24px}
 .svc .icon svg{width:42px;height:42px;stroke:var(--white);fill:none;stroke-width:1.1}
+.svc .icon img{width:44px;height:auto;display:block}
 .svc h3{font-family:var(--jp-serif);font-size:1.32rem;font-weight:600;letter-spacing:.04em;
   margin-bottom:8px}
 .svc .en{font-family:var(--util);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
