@@ -26,7 +26,20 @@ body{
   line-height:1.85;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  position:relative;
 }
+/* ゴールドの波模様テクスチャをセクションごとにまばらに配置 */
+.texture-scatter{position:relative}
+.texture-scatter::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:url("../images/texture-gold-wave.jpg");
+  background-repeat:no-repeat;background-size:cover;
+  opacity:.32;mix-blend-mode:screen;
+}
+.texture-scatter.pos-tl::before{background-position:left top}
+.texture-scatter.pos-br::before{background-position:right bottom}
+.texture-scatter.pos-tr::before{background-position:right top}
+.texture-scatter > .wrap{position:relative;z-index:1}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
