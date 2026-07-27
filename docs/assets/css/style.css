@@ -379,7 +379,7 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .hero{padding:84px 32px 24px}
   .hero-top{padding-bottom:clamp(90px,20vw,180px)}
   /* テキストの右下あたりに来るよう、右端ではなく内側に配置 */
-  .hero-logo{width:clamp(190px,30vw,280px);bottom:4vw;right:auto;left:67%}
+  .hero-logo{width:clamp(230px,36vw,340px);bottom:4vw;right:auto;left:68%}
   .hero-lead{margin-top:14px}
   .hero-sub{margin-top:12px}
   .hero-locale{margin-top:16px}
@@ -428,7 +428,7 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   /* テキストは中央よりやや左寄り・大きめ、ロゴは右下に大きく独立配置 */
   .hero-top{padding-bottom:56vw}
   .hero-copy{max-width:88%;margin-right:8%}
-  .hero-logo{width:70vw;max-width:320px}
+  .hero-logo{width:50vw;max-width:200px}
   .hero h1{line-height:1.4;font-size:1.65rem}
   .hero-lead{font-size:1.05rem;padding-left:12px;margin-top:14px;line-height:1.55}
   .hero-sub{padding-left:12px;margin-top:12px;font-size:.84rem;line-height:1.7}
