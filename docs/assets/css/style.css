@@ -393,8 +393,8 @@ footer{border-top:1px solid var(--line-soft);padding:64px 0 40px}
   .menu-toggle{display:inline-flex}
   header .btn:not(.menu-toggle){display:none}
   .hero{min-height:auto;padding-top:120px;padding-bottom:70px}
-  /* 900px以下は常にロゴを中央配置（561〜900pxの抜け漏れ対策） */
-  .hero-logo{left:50%;right:auto;transform:translateX(-50%);
+  /* 900px以下はロゴを中央よりやや左に配置 */
+  .hero-logo{left:44%;right:auto;transform:translateX(-50%);
     animation:logo-float-mobile 7s ease-in-out infinite}
   .hero-steps-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .hero-step{padding:20px 12px}
