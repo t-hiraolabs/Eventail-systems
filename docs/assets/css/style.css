@@ -32,7 +32,7 @@ body{
 .texture-scatter{position:relative}
 .texture-scatter::before{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background-image:url("../images/texture-gold-wave.jpg");
+  background-image:url("../images/texture-gold-wave.webp");
   background-repeat:no-repeat;background-size:cover;
   opacity:.32;mix-blend-mode:screen;
 }
@@ -163,7 +163,7 @@ nav.links a:hover::after{width:100%}
   position:relative}
 /* Hero背景：撮り下ろしのゴールドウェーブ画像を使用（右下から光が流れる意匠を内包） */
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
-  background-image:url("../images/hero-bg.jpg");background-size:cover;
+  background-image:url("../images/hero-bg.webp");background-size:cover;
   background-position:center bottom;background-repeat:no-repeat}
 .hero-bg::after{content:"";position:absolute;inset:0;
   /* 文字とロゴの可読性を確保するための暗めのオーバーレイ */
