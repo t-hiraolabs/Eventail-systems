@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>発注最適化ツール — サンプル集 | Eventail Systems</title>
+<meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<style>
+  :root {
+    --bg: #efeae0;
+    --surface: #fbf7ef;
+    --surface-raised: #ffffff;
+    --ink: #211d19;
+    --ink-soft: #6b5d4d;
+    --ink-faint: #9c8f7c;
+    --line: rgba(33, 29, 25, 0.14);
+    --line-strong: rgba(33, 29, 25, 0.28);
+    --brass: #8f6a24;
+    --brass-strong: #6d4f16;
+    --brass-tint: rgba(143, 106, 36, 0.1);
+    --brass-on-ticket: #f0d9a0;
+    --ticket-bg-1: #2a2119;
+    --ticket-bg-2: #1c1611;
+    --ticket-ink: #f3ead9;
+    --ticket-ink-soft: #cbb996;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --surface: #201b15;
+      --surface-raised: #262019;
+      --ink: #f0e9da;
+      --ink-soft: #bfb09a;
+      --ink-faint: #7d715f;
+      --line: rgba(240, 233, 218, 0.14);
+      --line-strong: rgba(240, 233, 218, 0.26);
+      --brass: #dcb267;
+      --brass-strong: #eecb8b;
+      --brass-tint: rgba(220, 178, 103, 0.14);
+      --ticket-bg-1: #34291b;
+      --ticket-bg-2: #211a12;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --surface: #201b15; --surface-raised: #262019;
+    --ink: #f0e9da; --ink-soft: #bfb09a; --ink-faint: #7d715f;
+    --line: rgba(240, 233, 218, 0.14); --line-strong: rgba(240, 233, 218, 0.26);
+    --brass: #dcb267; --brass-strong: #eecb8b; --brass-tint: rgba(220, 178, 103, 0.14);
+    --ticket-bg-1: #34291b; --ticket-bg-2: #211a12;
+  }
+  :root[data-theme="light"] {
+    --bg: #efeae0; --surface: #fbf7ef; --surface-raised: #ffffff;
+    --ink: #211d19; --ink-soft: #6b5d4d; --ink-faint: #9c8f7c;
+    --line: rgba(33, 29, 25, 0.14); --line-strong: rgba(33, 29, 25, 0.28);
+    --brass: #8f6a24; --brass-strong: #6d4f16; --brass-tint: rgba(143, 106, 36, 0.1);
+    --ticket-bg-1: #2a2119; --ticket-bg-2: #1c1611;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .back-link {
+    display: block;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 28px 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--brass-strong); }
+
+  .page { max-width: 1080px; margin: 0 auto; padding: 24px 28px 64px; }
+  .masthead { margin-bottom: 28px; }
+
+  .tag {
+    display: inline-block;
+    font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    color: var(--brass-strong); background: var(--brass-tint);
+    border: 1px solid var(--line-strong); border-radius: 3px; padding: 4px 8px;
+  }
+
+  h1 {
+    margin: 14px 0 10px;
+    font-size: clamp(26px, 3.6vw, 36px);
+    font-weight: 800; letter-spacing: -0.01em; text-wrap: balance;
+  }
+
+  .lede { margin: 0; max-width: 62ch; color: var(--ink-soft); font-size: 15px; line-height: 1.75; }
+
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 26px 0 6px; border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+  }
+
+  .tab-btn {
+    font: inherit; font-size: 13px; font-weight: 700;
+    color: var(--ink-soft); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 16px; cursor: pointer;
+  }
+  .tab-btn:hover { border-color: var(--line-strong); }
+  .tab-btn.active { background: var(--brass); border-color: var(--brass); color: var(--ticket-bg-2); }
+  .tab-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+  .domain-lede {
+    margin: 4px 0 26px; color: var(--ink-faint); font-size: 13px; line-height: 1.7; max-width: 64ch;
+  }
+
+  .board { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: start; }
+  .col { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .panel h2 {
+    margin: 0 0 16px; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink);
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .panel h2 .hint { font-size: 11px; font-weight: 600; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field span { font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+  .field select, .field input {
+    font: inherit; font-size: 15px; padding: 10px 12px; border-radius: 6px;
+    border: 1px solid var(--line-strong); background: var(--surface-raised); color: var(--ink);
+  }
+  .field input { font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; }
+  .field select:focus, .field input:focus { outline: 2px solid var(--brass); outline-offset: 1px; }
+  .field-note { font-size: 11.5px; color: var(--ink-faint); }
+
+  /* --- チケット --- */
+  .ticket { position: relative; background: linear-gradient(155deg, var(--ticket-bg-1), var(--ticket-bg-2)); color: var(--ticket-ink); border: none; padding-bottom: 30px; overflow: hidden; }
+  .ticket::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 14px;
+    background-image: radial-gradient(circle at 9px 0, var(--bg) 7px, transparent 7.5px);
+    background-size: 18px 14px; background-repeat: repeat-x;
+  }
+  .ticket h2 { color: var(--ticket-ink-soft); }
+  .placeholder { color: var(--ticket-ink-soft); font-size: 13px; padding: 20px 0; text-align: center; }
+  .ticket-product { font-size: 20px; font-weight: 800; margin-bottom: 2px; }
+  .ticket-price-row { display: flex; align-items: baseline; gap: 10px; margin: 10px 0 18px; }
+  .ticket-price {
+    font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace;
+    font-variant-numeric: tabular-nums; font-size: 34px; font-weight: 700; color: var(--brass-on-ticket, #f0d9a0);
+  }
+  .copy-btn {
+    font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; color: var(--ticket-bg-2);
+    background: var(--brass-on-ticket, #f0d9a0); border: none; border-radius: 4px; padding: 5px 9px; cursor: pointer;
+  }
+  .copy-btn:hover { filter: brightness(1.08); }
+  .copy-btn:focus-visible { outline: 2px solid var(--ticket-ink); outline-offset: 2px; }
+  .ticket-rule { height: 1px; background: repeating-linear-gradient(90deg, rgba(243, 234, 217, 0.3) 0 6px, transparent 6px 12px); margin: 4px 0 16px; }
+  .stat-row { display: flex; align-items: baseline; justify-content: space-between; padding: 10px 0; border-top: 1px solid rgba(243, 234, 217, 0.12); }
+  .stat-row:first-of-type { border-top: none; }
+  .stat-label { font-size: 12px; color: var(--ticket-ink-soft); font-weight: 600; }
+  .stat-value { display: flex; align-items: baseline; gap: 8px; }
+  .stat-num {
+    font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace;
+    font-variant-numeric: tabular-nums; font-size: 19px; font-weight: 700;
+  }
+  .stat-unit { font-size: 12px; color: var(--ticket-ink-soft); }
+  .ticket-note { margin-top: 16px; font-size: 12px; line-height: 1.7; color: var(--ticket-ink-soft); }
+
+  /* --- テーブル --- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 10px 12px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--line); }
+  th { font-size: 11px; letter-spacing: 0.04em; color: var(--ink-soft); font-weight: 700; background: var(--surface-raised); }
+  td.mono, th.mono { font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; }
+  tbody tr:last-child td { border-bottom: none; }
+  tr.total td { background: var(--brass-tint); font-weight: 800; border-top: 1px solid var(--line-strong); }
+
+  /* --- 在庫/バラ売りカード --- */
+  .stock { border: 1px dashed var(--line-strong); }
+  .stock .placeholder { color: var(--ink-faint); font-size: 13px; padding: 8px 0; text-align: left; }
+  .stock-price {
+    font-family: "JetBrains Mono", "SF Mono", "Cascadia Mono", ui-monospace, Consolas, monospace;
+    font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 700; color: var(--brass);
+  }
+
+  .colophon { margin-top: 40px; text-align: center; font-size: 11.5px; color: var(--ink-faint); letter-spacing: 0.01em; }
+
+  @media (max-width: 820px) { .board { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="../index.html#works">← Eventail Systems サイトに戻る</a>
+
+<div class="page">
+  <header class="masthead">
+    <span class="tag">SAMPLE DATA — 実在の取引先とは無関係</span>
+    <h1>発注最適化ツール サンプル集</h1>
+    <p class="lede">
+      「決まったサイズの商品を、必要な量だけ・できるだけ安く・できるだけ少ない個数で揃える」という
+      同じ計算ロジックを、4つの業種向けに作り分けたサンプルです。タブで切り替えてご覧ください。
+    </p>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+  <p class="domain-lede" id="domainLede"></p>
+
+  <main class="board">
+    <div class="col">
+      <section class="panel" id="inputPanel"></section>
+      <section class="panel">
+        <h2 id="breakdownTitle">内訳</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr id="tableHead"></tr></thead>
+            <tbody id="resultBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel ticket" id="bestResult"></section>
+      <section class="panel stock" id="stockResult"></section>
+    </div>
+  </main>
+
+  <footer class="colophon">個人事業ポートフォリオ用サンプル画面／数値・商品名はすべてダミーです</footer>
+</div>
+
+<script>
+  "use strict";
+
+  // ============================================================
+  // 共通ロジック：目標量以上になる中で「最安値・個数最少」の組み合わせを探索
+  // ============================================================
+  function solveCombo(variants, targetUnits) {
+    const targetInt = Math.ceil(targetUnits - 1e-9);
+    const maxSize = Math.max(...variants.map((v) => v.size));
+    const maxSum = targetInt + maxSize;
+
+    const dpCost = new Array(maxSum + 1).fill(Infinity);
+    const dpCount = new Array(maxSum + 1).fill(Infinity);
+    const dpFrom = new Array(maxSum + 1).fill(0);
+    dpCost[0] = 0;
+    dpCount[0] = 0;
+
+    for (let s = 1; s <= maxSum; s++) {
+      for (const v of variants) {
+        if (v.size <= s && dpCost[s - v.size] < Infinity) {
+          const cost = dpCost[s - v.size] + v.price;
+          const count = dpCount[s - v.size] + 1;
+          if (cost < dpCost[s] || (cost === dpCost[s] && count < dpCount[s])) {
+            dpCost[s] = cost;
+            dpCount[s] = count;
+            dpFrom[s] = v.size;
+          }
+        }
+      }
+    }
+
+    let bestS = -1;
+    for (let s = targetInt; s <= maxSum; s++) {
+      if (dpCost[s] < Infinity) {
+        if (bestS === -1 || dpCost[s] < dpCost[bestS] || (dpCost[s] === dpCost[bestS] && dpCount[s] < dpCount[bestS])) {
+          bestS = s;
+        }
+      }
+    }
+    if (bestS === -1) return null;
+
+    const counts = {};
+    let s = bestS;
+    while (s > 0) {
+      const sz = dpFrom[s];
+      counts[sz] = (counts[sz] || 0) + 1;
+      s -= sz;
+    }
+    const priceMap = {};
+    variants.forEach((v) => (priceMap[v.size] = v.price));
+
+    const breakdown = Object.keys(counts)
+      .map(Number)
+      .sort((a, b) => b - a)
+      .map((size) => ({ size, count: counts[size], price: priceMap[size], lineCost: counts[size] * priceMap[size] }));
+
+    return {
+      totalSum: bestS,
+      totalCount: breakdown.reduce((sum, b) => sum + b.count, 0),
+      totalCost: breakdown.reduce((sum, b) => sum + b.lineCost, 0),
+      breakdown,
+    };
+  }
+
+  function getDivisorsDesc(num) {
+    const divs = [];
+    for (let i = 1; i <= num; i++) if (num % i === 0) divs.push(i);
+    return divs.sort((a, b) => b - a);
+  }
+
+  function calcStrandCount(masterWidth, paperWidth) {
+    for (const n of getDivisorsDesc(masterWidth)) {
+      const strandWidth = masterWidth / n;
+      if (strandWidth >= paperWidth) return { n, strandWidth };
+    }
+    return null;
+  }
+
+  function calcStockGeneric(type, requiredUnits, widthConstraint) {
+    if (!type.stock || type.stock.length === 0) return { noStock: true };
+    let candidates = type.stock;
+    if (widthConstraint != null) {
+      candidates = candidates.filter((s) => s.size >= widthConstraint).sort((a, b) => a.size - b.size);
+      if (candidates.length === 0) {
+        return { unavailable: true, reason: `在庫幅（${type.stock.map((s) => s.size).join("/")}mm）に必要な幅以上のものがありません` };
+      }
+    }
+    const chosen = candidates[0];
+    return { unavailable: false, size: chosen.size, pricePerUnit: chosen.pricePerUnit, totalCost: chosen.pricePerUnit * requiredUnits };
+  }
+
+  function copyValue(text) {
+    try { navigator.clipboard.writeText(String(text)); } catch (e) {}
+  }
+  window.copyValue = copyValue;
+
+  // ============================================================
+  // 4業種分のサンプルデータ（実際に埋め込む際はここを差し替えるだけでOK）
+  // ============================================================
+  const domains = {
+    foil: {
+      tabLabel: "箔（原反分割あり）",
+      title: "箔ロール 発注計算",
+      lede: "原紙の幅と必要メーターから、原反を無駄なく分割できる帯幅と、つなぎ（ロールの継ぎ目）が最少になる発注本数の組み合わせを自動算出します。",
+      typeFieldLabel: "箔の種類",
+      hasWidthField: true,
+      widthFieldLabel: "原紙の幅（mm）",
+      widthDefault: 350,
+      targetFieldLabel: "必要メーター（m）",
+      targetUnit: "m",
+      targetStep: 10,
+      targetDefault: 650,
+      pieceLabel: "本",
+      tableCols: ["原反×長さ", "本数", "長さ(m)", "単価", "金額"],
+      types: [
+        {
+          name: "TYPE-A", alloy: "3層箔（サンプル）", masterWidth: 600,
+          variants: [{ size: 100, price: 8000 }, { size: 200, price: 16000 }, { size: 300, price: 24000 }, { size: 500, price: 40000 }],
+          stock: [{ size: 90, pricePerUnit: 9.8 }, { size: 130, pricePerUnit: 13.5 }, { size: 180, pricePerUnit: 17.0 }, { size: 250, pricePerUnit: 22.5 }, { size: 400, pricePerUnit: 33.0 }],
+        },
+        {
+          name: "TYPE-B", alloy: "3層箔（サンプル）", masterWidth: 600,
+          variants: [{ size: 100, price: 10000 }, { size: 200, price: 20000 }, { size: 300, price: 30000 }],
+        },
+      ],
+    },
+
+    ribbon: {
+      tabLabel: "ラッピングリボン",
+      title: "リボン・包装紐 発注計算",
+      lede: "必要な合計メートル数に対して、ロール本数（結び目の数）が最少になり、かつ最安になる組み合わせを自動算出します。",
+      typeFieldLabel: "リボンの種類",
+      hasWidthField: false,
+      targetFieldLabel: "必要メートル数（m）",
+      targetUnit: "m",
+      targetStep: 1,
+      targetDefault: 37,
+      pieceLabel: "本",
+      jointLabel: "結び目",
+      tableCols: ["商品×長さ", "本数", "長さ(m)", "単価", "金額"],
+      types: [
+        {
+          name: "サテンリボン 25mm", alloy: "のし・花束ラッピング用",
+          variants: [{ size: 5, price: 600 }, { size: 10, price: 1100 }, { size: 20, price: 2000 }, { size: 50, price: 4500 }],
+          stock: [{ size: 1, pricePerUnit: 140 }],
+        },
+        {
+          name: "麻ひも（太）", alloy: "ナチュラル系ラッピング用",
+          variants: [{ size: 5, price: 450 }, { size: 10, price: 800 }, { size: 20, price: 1500 }, { size: 50, price: 3300 }],
+        },
+      ],
+    },
+
+    paint: {
+      tabLabel: "ペンキ・塗料",
+      title: "塗料 購入計算",
+      lede: "塗りたい面積から必要な塗料量に換算し、缶サイズの組み合わせで最少個数・最安値になる購入プランを自動算出します。",
+      typeFieldLabel: "塗料の種類",
+      hasAreaField: true,
+      areaFieldLabel: "塗りたい面積（m²）",
+      areaDefault: 42,
+      pieceLabel: "缶",
+      tableCols: ["商品×容量", "本数", "容量(L)", "単価", "金額"],
+      types: [
+        {
+          name: "外壁用シリコン塗料", alloy: "1Lで約9m²（1回塗り目安）", coverage: 9,
+          variants: [{ size: 1, price: 3200 }, { size: 3, price: 8800 }, { size: 10, price: 26000 }],
+        },
+        {
+          name: "室内用水性塗料", alloy: "1Lで約12m²（1回塗り目安）", coverage: 12,
+          variants: [{ size: 1, price: 2400 }, { size: 3, price: 6600 }, { size: 10, price: 19000 }],
+        },
+      ],
+    },
+
+    drinks: {
+      tabLabel: "飲み物ケース買い",
+      title: "飲み物 まとめ買い計算",
+      lede: "パーティーや来客用に必要な本数から、パック（6/12/24本）の組み合わせで最少個数・最安値になる買い方を自動算出します。",
+      typeFieldLabel: "商品",
+      hasWidthField: false,
+      targetFieldLabel: "必要本数（本）",
+      targetUnit: "本",
+      targetStep: 1,
+      targetDefault: 34,
+      pieceLabel: "パック",
+      tableCols: ["商品×入数", "パック数", "本数", "単価", "金額"],
+      types: [
+        {
+          name: "コーラ 500ml", alloy: "サンプル商品",
+          variants: [{ size: 6, price: 900 }, { size: 12, price: 1680 }, { size: 24, price: 3120 }],
+          stock: [{ size: 1, pricePerUnit: 160 }],
+        },
+        {
+          name: "緑茶 500ml", alloy: "サンプル商品",
+          variants: [{ size: 6, price: 780 }, { size: 12, price: 1440 }, { size: 24, price: 2700 }],
+        },
+      ],
+    },
+  };
+
+  let activeDomainKey = "foil";
+
+  // ============================================================
+  // タブ・入力欄の構築
+  // ============================================================
+  function buildTabs() {
+    const tabs = document.getElementById("tabs");
+    tabs.innerHTML = Object.keys(domains)
+      .map((key) => `<button type="button" class="tab-btn${key === activeDomainKey ? " active" : ""}" data-domain="${key}">${domains[key].tabLabel}</button>`)
+      .join("");
+    tabs.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        activeDomainKey = btn.dataset.domain;
+        setupDomain();
+      });
+    });
+  }
+
+  function buildInputPanel(domain) {
+    const panel = document.getElementById("inputPanel");
+    let html = `<h2>入力</h2>`;
+    html += `<label class="field"><span>${domain.typeFieldLabel}</span><select id="typeSelect"></select></label>`;
+    if (domain.hasWidthField) {
+      html += `<label class="field"><span>${domain.widthFieldLabel}</span><input id="extraInput" type="number" step="5" min="5" /></label>`;
+    }
+    if (domain.hasAreaField) {
+      html += `<label class="field"><span>${domain.areaFieldLabel}</span><input id="extraInput" type="number" step="1" min="1" /><span class="field-note" id="coverageNote"></span></label>`;
+    }
+    if (domain.targetFieldLabel) {
+      html += `<label class="field"><span>${domain.targetFieldLabel}</span><input id="targetInput" type="number" step="${domain.targetStep}" min="1" /></label>`;
+    }
+    panel.innerHTML = html;
+
+    const typeSelect = document.getElementById("typeSelect");
+    typeSelect.innerHTML = domain.types.map((t, i) => `<option value="${i}">${t.name}</option>`).join("");
+
+    const extraInput = document.getElementById("extraInput");
+    if (extraInput) extraInput.value = domain.hasAreaField ? domain.areaDefault : domain.widthDefault;
+
+    const targetInput = document.getElementById("targetInput");
+    if (targetInput) targetInput.value = domain.targetDefault;
+
+    [typeSelect, extraInput, targetInput].forEach((el) => {
+      if (!el) return;
+      el.addEventListener("input", render);
+      el.addEventListener("change", render);
+    });
+  }
+
+  function buildTableHead(domain) {
+    document.getElementById("tableHead").innerHTML = domain.tableCols.map((c, i) => `<th${i > 0 ? ' class="mono"' : ""}>${c}</th>`).join("");
+    document.getElementById("breakdownTitle").innerHTML = `内訳 <span class="hint">最少個数構成</span>`;
+  }
+
+  function setupDomain() {
+    const domain = domains[activeDomainKey];
+    document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.domain === activeDomainKey));
+    document.getElementById("domainLede").textContent = domain.lede;
+    buildInputPanel(domain);
+    buildTableHead(domain);
+    render();
+  }
+
+  // ============================================================
+  // 計算 & 描画
+  // ============================================================
+  function render() {
+    const domain = domains[activeDomainKey];
+    const typeIdx = parseInt(document.getElementById("typeSelect").value, 10) || 0;
+    const type = domain.types[typeIdx];
+
+    const extraInput = document.getElementById("extraInput");
+    const targetInputEl = document.getElementById("targetInput");
+    const extraValue = extraInput ? parseFloat(extraInput.value) || 0 : 0;
+
+    const bestBox = document.getElementById("bestResult");
+    const stockBox = document.getElementById("stockResult");
+    const tbody = document.getElementById("resultBody");
+    tbody.innerHTML = "";
+    stockBox.style.display = domain.hasAreaField ? "none" : "";
+
+    // --- 目標量(target)の算出（業種ごとに換算方法が異なる） ---
+    let target = 0;
+    let n = 1;
+    let strandWidth = null;
+    let coverageNote = "";
+
+    if (domain.hasWidthField) {
+      if (extraValue <= 0) { bestBox.innerHTML = placeholderTicket("値を入力してください"); stockBox.innerHTML = ""; return; }
+      const strand = calcStrandCount(type.masterWidth, extraValue);
+      if (!strand) { bestBox.innerHTML = placeholderTicket(`幅(${extraValue}mm)が原反幅(${type.masterWidth}mm)を超えています`); stockBox.innerHTML = ""; return; }
+      n = strand.n; strandWidth = strand.strandWidth;
+      const targetMeters = parseFloat(targetInputEl.value) || 0;
+      if (targetMeters <= 0) { bestBox.innerHTML = placeholderTicket("必要メーターを入力してください"); stockBox.innerHTML = ""; return; }
+      target = targetMeters / n;
+    } else if (domain.hasAreaField) {
+      if (extraValue <= 0) { bestBox.innerHTML = placeholderTicket("面積を入力してください"); stockBox.innerHTML = ""; return; }
+      target = extraValue / type.coverage;
+      coverageNote = `${extraValue}m² ÷ 1Lあたり${type.coverage}m² ≒ 約${target.toFixed(1)}L必要`;
+      const note = document.getElementById("coverageNote");
+      if (note) note.textContent = `※${type.alloy}`;
+    } else {
+      const targetVal = parseFloat(targetInputEl.value) || 0;
+      if (targetVal <= 0) { bestBox.innerHTML = placeholderTicket("必要量を入力してください"); stockBox.innerHTML = ""; return; }
+      target = targetVal;
+    }
+
+    const combo = solveCombo(type.variants, target);
+    if (!combo) {
+      bestBox.innerHTML = placeholderTicket("組み合わせが見つかりませんでした");
+    } else {
+      renderTicket(domain, type, combo, n, strandWidth, extraValue, target, coverageNote);
+      combo.breakdown.forEach((line) => {
+        const tr = document.createElement("tr");
+        const label = domain.hasWidthField ? `${type.masterWidth}×${line.size}` : `${type.name}｜${line.size}${domain.hasAreaField ? "L" : domain.targetUnit || "本"}`;
+        tr.innerHTML = `
+          <td>${label}</td>
+          <td class="mono">${line.count}${domain.pieceLabel}</td>
+          <td class="mono">${(line.size * line.count).toLocaleString()}</td>
+          <td class="mono">¥${line.price.toLocaleString()}</td>
+          <td class="mono">¥${line.lineCost.toLocaleString()}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      const totalTr = document.createElement("tr");
+      totalTr.className = "total";
+      totalTr.innerHTML = `
+        <td>合計</td>
+        <td class="mono">${combo.totalCount}${domain.pieceLabel}</td>
+        <td class="mono">${combo.totalSum.toLocaleString()}</td>
+        <td></td>
+        <td class="mono">¥${combo.totalCost.toLocaleString()}</td>
+      `;
+      tbody.appendChild(totalTr);
+    }
+
+    // --- 在庫／バラ売り ---
+    const widthConstraint = domain.hasWidthField ? extraValue : null;
+    const requiredForStock = domain.hasWidthField ? parseFloat(targetInputEl.value) || 0 : domain.hasAreaField ? target : parseFloat(targetInputEl.value) || 0;
+    const stock = calcStockGeneric(type, requiredForStock, widthConstraint);
+
+    if (domain.hasAreaField) {
+      stockBox.innerHTML = "";
+    } else if (stock.noStock) {
+      stockBox.innerHTML = `<h2>在庫・バラ売りを使う場合</h2><div class="placeholder" style="text-align:left">${type.name}の在庫データはありません</div>`;
+    } else if (stock.unavailable) {
+      stockBox.innerHTML = `<h2>在庫・バラ売りを使う場合</h2><div class="placeholder" style="text-align:left">${stock.reason}</div>`;
+    } else {
+      stockBox.innerHTML = `
+        <h2>在庫・バラ売りを使う場合</h2>
+        <div class="ticket-price-row">
+          <span class="stock-price">¥${stock.totalCost.toLocaleString()}</span>
+          <button class="copy-btn" style="background:var(--brass);color:var(--surface-raised)" onclick="copyValue('${stock.totalCost}')">COPY</button>
+        </div>
+        <p class="ticket-note" style="color:var(--ink-faint)">${domain.hasWidthField ? `巾${stock.size}mm在庫` : `${stock.size}${domain.targetUnit || "本"}あたり`}／単価¥${stock.pricePerUnit}${domain.hasWidthField ? "/m" : ""} × ${requiredForStock.toLocaleString()}${domain.hasWidthField ? "m" : domain.targetUnit || "本"}</p>
+      `;
+    }
+  }
+
+  function placeholderTicket(msg) {
+    return `<h2>チケット</h2><div class="placeholder">${msg}</div>`;
+  }
+
+  function renderTicket(domain, type, combo, n, strandWidth, extraValue, target, coverageNote) {
+    const bestBox = document.getElementById("bestResult");
+    let statsHtml = "";
+
+    if (domain.hasWidthField) {
+      statsHtml += statRow("帯幅", strandWidth, "mm");
+      statsHtml += statRow("合計メーター", combo.totalSum * n, "m");
+      statsHtml += statRow("つなぎ箇所", Math.max(combo.totalCount - 1, 0), "箇所");
+    } else if (domain.hasAreaField) {
+      statsHtml += statRow("必要塗料量", Math.round(target * 10) / 10, "L");
+      statsHtml += statRow("使用缶数", combo.totalCount, domain.pieceLabel);
+    } else {
+      statsHtml += statRow(`合計${domain.targetUnit || ""}`, combo.totalSum, domain.targetUnit || "");
+      if (domain.jointLabel) {
+        statsHtml += statRow(domain.jointLabel, Math.max(combo.totalCount - 1, 0), "箇所");
+      } else {
+        statsHtml += statRow(`${domain.pieceLabel}数`, combo.totalCount, domain.pieceLabel);
+      }
+    }
+
+    let note = "";
+    if (domain.hasWidthField) {
+      note = `${type.masterWidth}mm原反を${n}分割／必要${document.getElementById("targetInput").value}m／合計${combo.totalCount}${domain.pieceLabel}発注`;
+    } else if (domain.hasAreaField) {
+      note = coverageNote;
+    } else {
+      note = `合計${combo.totalCount}${domain.pieceLabel}購入`;
+    }
+
+    bestBox.innerHTML = `
+      <h2>チケット <span class="hint">最安・最少個数</span></h2>
+      <div class="ticket-product">${type.name}${type.alloy ? "　" + type.alloy : ""}</div>
+      <div class="ticket-price-row">
+        <span class="ticket-price">¥${combo.totalCost.toLocaleString()}</span>
+        <button class="copy-btn" onclick="copyValue('${combo.totalCost}')">COPY</button>
+      </div>
+      <div class="ticket-rule"></div>
+      ${statsHtml}
+      <p class="ticket-note">${note}</p>
+    `;
+  }
+
+  function statRow(label, value, unit) {
+    return `
+      <div class="stat-row">
+        <span class="stat-label">${label}</span>
+        <span class="stat-value"><span class="stat-num">${(typeof value === "number" ? value.toLocaleString() : value)}</span><span class="stat-unit">${unit}</span></span>
+      </div>
+    `;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    buildTabs();
+    setupDomain();
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      e.preventDefault();
+      const fields = [document.getElementById("typeSelect"), document.getElementById("extraInput"), document.getElementById("targetInput")].filter(Boolean);
+      const i = fields.indexOf(document.activeElement);
+      if (i > -1 && i < fields.length - 1) fields[i + 1].focus();
+    });
+  });
+</script>
+</body>
+</html>

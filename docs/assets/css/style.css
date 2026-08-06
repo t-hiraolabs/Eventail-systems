@@ -297,8 +297,9 @@ nav.links a:hover::after{width:100%}
 /* ---------- works ---------- */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .work{border:1px solid var(--line-soft);background:var(--ink-2);overflow:hidden;
-  transition:border-color .4s}
+  transition:border-color .4s;display:block}
 .work:hover{border-color:var(--line)}
+a.work:hover .thumb .tag{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 .work .thumb{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
   background:radial-gradient(circle at 50% 40%,#1b1b1f,#0c0c0e);position:relative;overflow:hidden}
 .work .thumb svg{width:60%;height:60%;opacity:.32;stroke:var(--white);fill:none;stroke-width:.8}
